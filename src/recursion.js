@@ -29,16 +29,48 @@ var sum = function(array) {
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
+    if (array.length) {
+        var count = 0;
+
+        for (var i = 0; i < array.length; i++) {
+            if (Array.isArray(array[i])) {
+                count += arraySum(array[i]);
+            } else {
+                count += array[i];
+            }
+        }
+
+        return count;
+    } else {
+        return 0;
+    }
 };
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+    if (n === 0) {
+        return true;
+    } else if (n === 1) {
+        return false;
+    } else if (n > 0) {
+        return isEven(n - 2);
+    } else if (n < 0) {
+        return isEven(n + 2);
+    }
 };
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+    
+    if (n === 0) {
+        return 0;
+    } else if (n > 0) {
+        return (n - 1) + sumBelow(n - 1);
+    } else if (n < 0) {
+        return (n + 1) + sumBelow(n + 1);
+    }
 };
 
 // 6. Get the integers within a range (x, y).
